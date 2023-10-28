@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Predictor</title>
+    <style>
+        /* Your existing styles here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Predictor</h1>
+        <p>Welcome to our image prediction service. Please upload an image to get started.</p>
+        <input type="file" id="file-input">
+        <button onclick="sendImage()" class="btn">Predict</button>
+    </div>
+
+    <script>
+        function sendImage() {
+            const fileInput = document.getElementById('file-input');
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('image', file);
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Handle the response from the server
+                alert('The image is predicted to be: ' + data);
+            })
+            .catch(error => {
+                // Handle any errors
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
