@@ -47,7 +47,7 @@ net.fc = nn.Linear(num_ftrs, 5)
 
 
 
-checkpoint=torch.load('best_checkpoint_resnet18.model')
+checkpoint=torch.load('best_checkpoint_resnet18.model',map_location=torch.device('cpu'))
 classes = ['bargraph', 'flowchart', 'linegraph', 'piechart', 'scatterplot']
 model=net
 model.load_state_dict(checkpoint)
